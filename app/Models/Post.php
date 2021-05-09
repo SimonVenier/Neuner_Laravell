@@ -10,14 +10,35 @@ use Illuminate\Support\Facades\File;
 class Post
 {
 
+    public $title;
+    public $excerpt;
+    public $date;
+    public $body;
+
+    /**
+     * Post constructor.
+     * @param $title
+     * @param $excerpt
+     * @param $date
+     * @param $body
+     */
+    public function __construct($title, $excerpt, $date, $body)
+    {
+        $this->title = $title;
+        $this->excerpt = $excerpt;
+        $this->date = $date;
+        $this->body = $body;
+    }
+
+
     public static function all(){
+
         $files = File::files(resource_path("posts/"));
 
-        return array_map(function ($file){
-
-            return $file -> getContents();
-
+        return array_map(function ($file) {
+            return $file->getContents();
         }, $files);
+
     }
 
 
