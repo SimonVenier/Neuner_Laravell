@@ -18,14 +18,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
 
-    $files = File::files(resource_path("posts"));
-    $documents = [];
+    return view('posts', [
 
-    foreach ($files as $file){
-        $documents = YamlFrontMatter::parseFile($file);
-    }
+       'posts'=> Post::all()
 
-    ddd($documents);
+    ]);
 
 
 
